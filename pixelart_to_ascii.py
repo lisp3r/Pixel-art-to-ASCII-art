@@ -35,18 +35,13 @@ def get_pixel_size(img: list) -> int:
 
 def resize_img(img: list, pix_size: int) -> list:
     '''Having a source's pixel size, removeng extra rows and cols.'''
+    return [row[::pix_size] for row in img[::pix_size]]
 
-    y_resized = [elem for num, elem in enumerate(img) if elem not in img[:num]]
-    new_img = []
-    for row in y_resized:
-        new_img.append(row[::pix_size])
-    return new_img
 
 def get_ascii(img: list) -> str:
     new_img = ""
     for x in img:
-        new_img += ''.join([str(y) for y in x])
-        new_img += '\n'
+        new_img += ''.join([str(y) for y in x]) + '\n'
     return new_img
 
 def print_ascii(img: list):
