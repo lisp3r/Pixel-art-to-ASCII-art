@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import os.path
 import argparse
 from json import dumps
@@ -55,12 +57,13 @@ def _write_down(data: str, file: str):
 
 def to_plain_text(images: list, colors: dict, file: str):
     str_colors = '\n'.join([f'{x}: {colors[x]}' for x in colors])
+    _write_down(str_colors, f'{file}_colors.txt')
     if len(images) == 1:
-        _write_down(f'{images[0]}\n\n{str_colors}', f'{file}.txt')
+        _write_down(f'{images[0]}', f'{file}.txt')
     else:
         n = 1
         for img in images:
-            _write_down(f'{img}\n\n{str_colors}', f'{file}_{n}.txt')
+            _write_down(f'{img}', f'{file}_{n}.txt')
             n = n+1
 
 def to_json(images: list, colors: dict, file: str):
