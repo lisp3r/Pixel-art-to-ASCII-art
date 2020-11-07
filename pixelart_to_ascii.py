@@ -4,6 +4,7 @@ import os.path
 import argparse
 from json import dumps
 from PIL import Image
+from colormap import rgb2hex
 
 
 def get_colors(img: Image) -> dict:
@@ -12,7 +13,7 @@ def get_colors(img: Image) -> dict:
     width, height = img.size
     dict_num = dict(img.getcolors(width*height))
     dict_rgb = dict(img.convert('RGB').getcolors(width*height))
-    return {str(dict_num[key]): f'rgb{dict_rgb[key]}' for key in dict_rgb}
+    return {str(dict_num[key]): rgb2hex(*dict_rgb[key]) for key in dict_rgb}
 
 def img_to_list(img: Image) -> list:
     '''Convert PIL.Image to pixel map'''
